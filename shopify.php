@@ -118,7 +118,7 @@
 		function __construct($message, $code, $request, $response=array(), Exception $previous=null)
 		{
 			$response_body_json = isset($response['body']) ? $response['body'] : '';
-			$response = json_decode($response_body_json, true);
+			$response = json_decode($response_body_json, true, 512, JSON_BIGINT_AS_STRING);
 			$response_error = isset($response['errors']) ? ' '.var_export($response['errors'], true) : '';
 			$this->message = $message.$response_error;
 			parent::__construct($this->message, $code, $request, $response, $previous);
